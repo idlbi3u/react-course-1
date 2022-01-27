@@ -42,8 +42,7 @@ const data = list;
 const App = () => {
     return (
         <div>
-
-
+            
             <div>
                 {
                 data.map((element) => <List key={element.id} id={element.id} title={element.title} cards={element.cards} />)
