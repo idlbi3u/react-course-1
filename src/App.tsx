@@ -1,8 +1,10 @@
 import React from 'react';
 import List from './Components/List';
+import { DragDropContext } from 'react-beautiful-dnd';
+import NewTaskForm from './Components/NewTaskForm';
 
 
-const card = [
+const allCards = [
     {
         id: 0,
         title: 'todo 1',
@@ -23,33 +25,47 @@ const card = [
     }
 ]
 
-const list = [
+const allLists = [
     {
         id: 0,
-        title: 'todo list 1',
-        cards: card,
+        title: 'Tasks',
+        cards: allCards,
     },
+
     {
         id: 1,
-        title: 'todo list 2',
-        cards: card,
+        title: 'In Progress',
+        cards: [],
     },
+    {
+        id: 2,
+        title: 'Done',
+        cards: [],
+    }
 ]
 
-const data = list;
+const data = allLists;
 
 // App function 
 const App = () => {
+    
     return (
-        <div>
-            
             <div>
-                {
-                data.map((element) => <List key={element.id} id={element.id} title={element.title} cards={element.cards} />)
-                }
-            </div>
+                <NewTaskForm />
+                
+                      <div className='lists'>
 
-        </div>
+                        {
+                            data.map((element) => 
+                                <DragDropContext onDragEnd={() => {}}>
+                                    <List key={element.id} id={element.id} title={element.title} cards={element.cards} />
+                                </DragDropContext>
+                            )
+                        }
+
+                      </div>
+                
+            </div>
     );
 }
 
