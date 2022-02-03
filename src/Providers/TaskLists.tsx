@@ -8,21 +8,30 @@ export const TaskListsProvider = (props: any) => {
         {
             id: 0,
             title: 'Tasks',
-            cards: [],
+            tasks: [],
         },
     
         {
             id: 1,
             title: 'In Progress',
-            cards: [],
+            tasks: [],
         },
         {
             id: 2,
             title: 'Done',
-            cards: [],
+            tasks: [],
         }
     ]);
 
+    const addTast = (title: string, description: string) => {
+        const newTast = {
+            id: 
+            title,
+            description,
+            status: false,
+        }
+        setLists();
+    }
     return (
         <TaskListsContext.Provider value={[Lists, setLists]}>
             {props.children}
