@@ -2,6 +2,7 @@ import React from 'react';
 import { Draggable } from 'react-beautiful-dnd';
 
 interface Card {
+    index: number;
     id: number;
     title: string;
     description: string;
@@ -10,10 +11,10 @@ interface Card {
 
 const Card = (props: Card) => {
     
-    const {id, title, description, status} = props;
+    const {index, id, title, description, status} = props;
 
     return (
-        <Draggable draggableId={id.toString()} index={id}>
+        <Draggable draggableId={id.toString()} index={index}>
             {
                 (provided) => (
                     <div 

@@ -14,22 +14,32 @@ const List = (props: List) => {
     const {id, title, cards} = props;
 
     return (
-        <div className='list'>
-            <h2>{ title }</h2>
-            <Droppable droppableId={id.toString()}>
+        <Droppable droppableId={title}>
+            
 
                 {
                     (provided) => (
+                    <div className='list'>
+                        <h2>{ title }</h2>
                         <div 
                         ref={provided.innerRef} 
                         {... provided.droppableProps}
                         >
-                            {cards.map((card) => <Card key={card.id} id={card.id} title={card.title} description={card.description} status={card.status}/>)}
+                            {cards.map((card, index) => 
+                                
+                            <Card key={card.id} id={card.id} title={card.title} description={card.description} status={card.status} index={index} />
+                            
+                            
+                            )}
+                            {provided.placeholder}
                         </div>
+                        
+                    </div> 
                     )
                 }
-            </Droppable>
-        </div>
+                
+            
+        </Droppable>
     ); 
 }
 
