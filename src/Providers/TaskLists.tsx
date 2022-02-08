@@ -1,7 +1,7 @@
 import React, { createContext, useState } from 'react';
-import Card from '../Components/Card';
+import Card from '../Components/Task';
 
-export const TaskListsContext = createContext({});
+// export const TaskListsContext = createContext();
 
 export const TaskListsProvider = (props: any) => {
 
@@ -9,7 +9,7 @@ export const TaskListsProvider = (props: any) => {
         {
             id: 0,
             title: 'Tasks',
-            tasks: [],
+            tasks: []
         },
         {
             id: 1,
@@ -24,8 +24,14 @@ export const TaskListsProvider = (props: any) => {
     ]);
 
     return (
-        <TaskListsContext.Provider value={[Lists, setLists]}>
-            {props.children}
-        </TaskListsContext.Provider>
+        <div>
+            
+        </div>
+        // <TaskListsContext.Provider value={[Lists, setLists]}>
+        //     {props.children}
+        // </TaskListsContext.Provider>
     );
+
+
+    //CETTE PARTIE NE FONCTIONNE PAS, J'AI PASSÉ DES HEURES DESSUS ET JE N'AI PAS PU LE FAIRE
 }

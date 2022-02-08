@@ -1,20 +1,21 @@
 import React from 'react';
-import Card from './Card';
+import Task from './Task';
 import { Droppable } from 'react-beautiful-dnd';
 
 interface List {
     id: number;
     title: string;
-    cards: Card[];
+    tasks?: Task[];
 }
 
 //create list component
 const List = (props: List) => {
+
     //create list of cards
-    const {id, title, cards} = props;
+    const {id= Date.now(), title, tasks=[]} = props;
 
     return (
-        <Droppable droppableId={title}>
+        <Droppable droppableId={id.toString()}>
             
 
                 {
@@ -25,12 +26,12 @@ const List = (props: List) => {
                         ref={provided.innerRef} 
                         {... provided.droppableProps}
                         >
-                            {cards.map((card, index) => 
-                                
-                            <Card key={card.id} id={card.id} title={card.title} description={card.description} status={card.status} index={index} />
+                            {
+                                tasks.map((task) => 
+                                <Task key={task.id} id={task.id} title={task.title} description={task.description} completed={task.completed} />
+                                )
+                            }
                             
-                            
-                            )}
                             {provided.placeholder}
                         </div>
                         
@@ -38,7 +39,6 @@ const List = (props: List) => {
                     )
                 }
                 
-            
         </Droppable>
     ); 
 }
