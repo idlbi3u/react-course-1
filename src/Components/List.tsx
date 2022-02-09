@@ -27,7 +27,6 @@ const List = (props: List) => {
                         <div 
                         ref={provided.innerRef} 
                         {... provided.droppableProps}
-                        className='list-cards'
                         >
                             {
                                 tasks.map((task, index) => 

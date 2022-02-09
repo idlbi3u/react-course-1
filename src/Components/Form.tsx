@@ -49,6 +49,8 @@ const AddForm = (props: Props) => {
                             <option value="">Assign to</option>
                             <option value="Eric">Eric</option>
                             <option value="Alex">Alex</option>
+                            <option value="John">John</option>
+                            <option value="Sam">Sam</option>
                         </select>
                     </div>
                     <div>

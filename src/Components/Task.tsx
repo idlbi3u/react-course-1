@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Draggable } from 'react-beautiful-dnd';
 import List from './List';
 
@@ -15,7 +15,8 @@ interface Task {
 }
 
 const Task = (props: Task) => {
-    
+    const [edit, setEdit] = useState<boolean>(false);
+    const [taskEdit, setTaskEdit] = useState<Task>({} as Task);
     const {id, title, description, completed, index, assignedTo, Lists, setLists} = props;
 
     const handleComplete = (id: number) => {
@@ -58,8 +59,33 @@ const Task = (props: Task) => {
         setLists([...Lists]);
     }
 
-    const handleEdit = (id: number) => {
+    const handleEdit = () => {
+        setEdit(true);
+        setTaskEdit(props);
+    }
 
+    const update = (id: number) => {
+        console.log('edit');
+        console.log(id);
+        console.log(taskEdit);
+        Lists?.map(list => {
+            if(list.tasks){
+                list.tasks.map(task => {
+                    if(task.id === id){
+                        task.title = taskEdit.title;
+                        task.description = taskEdit.description;
+                        task.assignedTo = taskEdit.assignedTo;
+                        return true;
+                    }
+                    return false;
+                })
+            }
+            return false;
+        })
+        setLists([...Lists]);
+        console.log(Lists);
+        setEdit(false);
+        setTaskEdit({} as Task);
     }
     return (
         <Draggable draggableId={id.toString()} index={index}>
@@ -71,17 +97,37 @@ const Task = (props: Task) => {
                     {...provided.draggableProps}
                     {...provided.dragHandleProps}
                     >
-                        <div>
-                            <h5>{ title }</h5>
-                            <p>{ description }</p>
-                            <p>{assignedTo !== "" ? "Assigned To : " + assignedTo : ""}</p>
-                            completed: { completed ? 'Yes' : 'No' }
-                        </div>
-                        <div>
-                            <button className='deleteBtn' onClick={() => handleDelete(id)}>Delete</button>
-                            <button className='modifyBtn' onClick={() => handleEdit(id)}>Modify</button>
-                            <button className='doneBtn' onClick={() => handleComplete(id)}>Done</button>
-                        </div>
+                        { edit ? 
+                            <div>
+                                
+                                <input type='text' value={taskEdit.title} onChange={(e) => setTaskEdit({...taskEdit, title: e.target.value})}/>
+                                <input type='text' value={taskEdit.description} onChange={(e) => setTaskEdit({...taskEdit, description: e.target.value})}/>
+                                <select  onChange={(e) => setTaskEdit({...taskEdit, assignedTo: e.target.value})}>
+                                    <option value={taskEdit.assignedTo}>{taskEdit.assignedTo}</option>
+                                    <option value="Eric">Eric</option>
+                                    <option value="Alex">Alex</option>
+                                    <option value="John">John</option>
+                                    <option value="Sam">Sam</option>
+                                </select>
+                                <button onClick={() => update(taskEdit.id)} className='doneBtn'>Save</button>
+                                
+                            </div>
+                         : 
+                         <div>
+                             <div>
+                                <h5>{ title }</h5>
+                                <p>{ description }</p>
+                                <p>{assignedTo !== "" ? "Assigned To : " + assignedTo : ""}</p>
+                                completed: { completed ? 'Yes' : 'No' }
+                            </div>
+                            <div>
+                                <button className='deleteBtn' onClick={() => handleDelete(id)}>Delete</button>
+                                <button className='modifyBtn' onClick={() => handleEdit()}>Modify</button>
+                                <button className='doneBtn' onClick={() => handleComplete(id)}>Done</button>
+                            </div>
+                         </div>
+                        }
+                        
                     </div>
                 )
             }
