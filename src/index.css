@@ -67,11 +67,13 @@ select{
 }
 
 .form{
-  width: 300px;
+  max-width: 700px;
   background-color: rgb(63, 102, 5);
   border-radius: 5px;
   margin: 20px;
-  padding: 10px;
+  padding: 5px;
+  display: flex;
+  justify-content: space-evenly;
 }
 
 .lists{

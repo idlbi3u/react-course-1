@@ -31,7 +31,7 @@ const List = (props: List) => {
                         >
                             {
                                 tasks.map((task, index) => 
-                                <Task key={task.id} id={task.id} title={task.title} description={task.description} completed={task.completed} index={index} Lists={Lists} setLists={setLists}/>
+                                <Task key={task.id} id={task.id} title={task.title} description={task.description} completed={task.completed} assignedTo={task.assignedTo} index={index} Lists={Lists} setLists={setLists}/>
                                 )
                             }
                             

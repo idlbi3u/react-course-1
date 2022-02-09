@@ -24,7 +24,11 @@ const Task = (props: Task) => {
             if(list.tasks){
                 list.tasks.map(task => {
                     if(task.id === id){
-                        task.completed = true;
+                        if(task.completed){
+                            task.completed = false;
+                        }else{
+                            task.completed = true;
+                        }
                         return true;
                     }
                     return false;
@@ -70,7 +74,7 @@ const Task = (props: Task) => {
                         <div>
                             <h5>{ title }</h5>
                             <p>{ description }</p>
-                            {assignedTo !== "" ? <p>Assigned to: { assignedTo }</p> : ""}
+                            <p>{assignedTo !== "" ? "Assigned To : " + assignedTo : ""}</p>
                             completed: { completed ? 'Yes' : 'No' }
                         </div>
                         <div>

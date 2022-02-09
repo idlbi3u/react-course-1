@@ -68,7 +68,7 @@ const App = () => {
                     })
                     console.log(task);
                 }else{
-                    alert('ERROR');
+                    alert('UNKNOWN ERROR');
                     return false;
                 }
             };
@@ -84,7 +84,7 @@ const App = () => {
                 <div className='lists'>
 
                     {
-                        Lists.map((element: List, index) => 
+                        Lists.map((element: List) => 
                             
                             <List key={element.id} id={element.id} title={element.title} tasks={element.tasks} Lists={Lists} setLists={setLists} />
                             
