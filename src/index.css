@@ -44,15 +44,17 @@ select{
 }
 
 .list{
-  display: flex;
-  justify-content: space-evenly;
-  flex-wrap: wrap;
   width: 300px;
+  height: auto;
   background-color: rgb(63, 102, 5);
   border-radius: 5px;
   margin: 20px;
   padding: 20px;
-  display: inline-block;
+  float: left;
+}
+
+.list-cards{
+  min-height: 100px;
 }
 
 .submit{
@@ -77,9 +79,8 @@ select{
 }
 
 .lists{
-  display: flex;
-  justify-content: space-evenly;
-  flex-wrap: wrap;
+  display: flow-root;
+  flex-shrink: unset;
 }
 
 .deleteBtn{

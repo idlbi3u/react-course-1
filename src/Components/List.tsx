@@ -18,16 +18,16 @@ const List = (props: List) => {
     const {id= Date.now(), title, tasks=[], Lists, setLists} = props;
 
     return (
-        <Droppable droppableId={id.toString()}>
-            
-
-                {
-                    (provided) => (
-                    <div className='list'>
-                        <h2>{ title }</h2>
+        
+        <div className='list'>
+            <h2>{ title }</h2>
+            <Droppable droppableId={id.toString()}>
+            {
+                (provided) => (
                         <div 
                         ref={provided.innerRef} 
                         {... provided.droppableProps}
+                        className='list-cards'
                         >
                             {
                                 tasks.map((task, index) => 
@@ -38,11 +38,11 @@ const List = (props: List) => {
                             {provided.placeholder}
                         </div>
                         
-                    </div> 
-                    )
-                }
+                )
+            }
+            </Droppable>
+        </div> 
                 
-        </Droppable>
     ); 
 }
 

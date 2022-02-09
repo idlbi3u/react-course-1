@@ -78,22 +78,22 @@ const App = () => {
     }
     
     return (
-        <DragDropContext onDragEnd={onDragEnd}>
+        <div>
             <AddForm setLists={setLists} handleAddList={handleAddList} handleAddTask={handleAddTask} task={task} setTask={setTask} list={list} setList={setlist} />
-            <div>
-                <div className='lists'>
 
-                    {
-                        Lists.map((element: List) => 
-                            
-                            <List key={element.id} id={element.id} title={element.title} tasks={element.tasks} Lists={Lists} setLists={setLists} />
-                            
-                        )
-                    }
+            <div className='lists'>
+                <DragDropContext onDragEnd={onDragEnd}>
 
-                </div>
+                {
+                    Lists.map((element: List) => 
+                        
+                        <List key={element.id} id={element.id} title={element.title} tasks={element.tasks} Lists={Lists} setLists={setLists} />
+                        
+                    )
+                }
+                </DragDropContext>
             </div>
-        </DragDropContext>
+        </div>
 
     );
 }
