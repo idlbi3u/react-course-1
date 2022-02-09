@@ -73,3 +73,30 @@ select{
   margin: 20px;
   padding: 10px;
 }
+
+.lists{
+  display: flex;
+  justify-content: space-evenly;
+  flex-wrap: wrap;
+}
+
+.deleteBtn{
+  background-color: #990d0d;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;    
+}
+
+.doneBtn{
+  background-color: #39990d;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;    
+}
+
+.modifyBtn{
+  background-color: #e6c73f;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;    
+}

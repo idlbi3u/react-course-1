@@ -6,13 +6,16 @@ interface List {
     id: number;
     title: string;
     tasks?: Task[];
+
+    Lists: List[];
+    setLists: React.Dispatch<React.SetStateAction<List[]>>;
 }
 
 //create list component
 const List = (props: List) => {
 
     //create list of cards
-    const {id= Date.now(), title, tasks=[]} = props;
+    const {id= Date.now(), title, tasks=[], Lists, setLists} = props;
 
     return (
         <Droppable droppableId={id.toString()}>
@@ -27,8 +30,8 @@ const List = (props: List) => {
                         {... provided.droppableProps}
                         >
                             {
-                                tasks.map((task) => 
-                                <Task key={task.id} id={task.id} title={task.title} description={task.description} completed={task.completed} />
+                                tasks.map((task, index) => 
+                                <Task key={task.id} id={task.id} title={task.title} description={task.description} completed={task.completed} index={index} Lists={Lists} setLists={setLists}/>
                                 )
                             }
                             
